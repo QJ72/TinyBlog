@@ -11,6 +11,34 @@ Class {
 	#category : #TinyBlog
 }
 
+{ #category : #'as yet unclassified' }
+TBPost class >> title: aTitle text: aText [
+	^ self new
+	title: aTitle;
+	text: aText; 
+	category: self unclassifiedTag;
+	notVisible ;
+	yourself
+]
+
+{ #category : #'as yet unclassified' }
+TBPost class >> title: aTitle text: aText category: aCategory [
+	^ (self title: aTitle text: aText)
+	category: aCategory;
+	notVisible;
+	yourself
+]
+
+{ #category : #'as yet unclassified' }
+TBPost class >> unclassifiedTag [
+	^ 'Unclassified'
+]
+
+{ #category : #acccessing }
+TBPost >> beVisible [
+	self visible: true
+]
+
 { #category : #accessing }
 TBPost >> category [
 	^ category
@@ -29,6 +57,21 @@ TBPost >> date [
 { #category : #accessing }
 TBPost >> date: aDate [
 	date := aDate
+]
+
+{ #category : #testing }
+TBPost >> isUnclassified [
+	^ self category = TBPost unclassifiedTag
+]
+
+{ #category : #testing }
+TBPost >> isVisible [ 
+	^ self visible
+]
+
+{ #category : #acccessing }
+TBPost >> notVisible [
+	self visible: false
 ]
 
 { #category : #accessing }
