@@ -1,6 +1,9 @@
 Class {
 	#name : #TBApplicationRootComponent,
 	#superclass : #WAComponent,
+	#instVars : [
+		'main'
+	],
 	#category : #'TinyBlog-Components'
 }
 
@@ -21,8 +24,24 @@ TBApplicationRootComponent class >> initialize [
 ]
 
 { #category : #rendering }
+TBApplicationRootComponent >> children [
+	^ { main }
+]
+
+{ #category : #initialization }
+TBApplicationRootComponent >> initialize [
+	super initialize.
+	main := TBPostsListComponent new
+]
+
+{ #category : #accessing }
+TBApplicationRootComponent >> main: aComponent [
+	main := aComponent
+]
+
+{ #category : #rendering }
 TBApplicationRootComponent >> renderContentOn: html [
-	html text: 'TinyBlog'
+	html render: main
 ]
 
 { #category : #updating }
