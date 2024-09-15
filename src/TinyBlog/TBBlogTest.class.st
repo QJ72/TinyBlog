@@ -4,13 +4,16 @@ Class {
 	#instVars : [
 		'blog',
 		'post',
-		'first'
+		'first',
+		'previousRepository'
 	],
 	#category : #'TinyBlog-Tests'
 }
 
 { #category : #initialization }
 TBBlogTest >> setUp [ 
+	previousRepository := VORepository current.
+	VORepository setRepository: VOMemoryRepository new.
 	blog := TBBlog current.
 	blog removeAllPosts.
 	first := TBPost title: 'A title' text: 'A text' category: 'First Category'.
@@ -21,7 +24,7 @@ TBBlogTest >> setUp [
 
 { #category : #running }
 TBBlogTest >> tearDown [ 
-	TBBlog reset
+	VORepository setRepository: previousRepository 
 ]
 
 { #category : #tests }
