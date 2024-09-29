@@ -2,7 +2,8 @@ Class {
 	#name : #TBPostsListComponent,
 	#superclass : #TBScreenComponent,
 	#instVars : [
-		'currentCategory'
+		'currentCategory',
+		'showLoginError'
 	],
 	#category : #'TinyBlog-Components'
 }
@@ -27,6 +28,21 @@ TBPostsListComponent >> currentCategory: anObject [
 { #category : #'as yet unclassified' }
 TBPostsListComponent >> goToAdministrationView [
 	self call: TBAdminComponent new
+]
+
+{ #category : #testing }
+TBPostsListComponent >> hasLoginError [
+	^ showLoginError ifNil: [ false ]
+]
+
+{ #category : #'as yet unclassified' }
+TBPostsListComponent >> loginErrorMessage [
+	^ 'Incorrect login and/or password'
+]
+
+{ #category : #'as yet unclassified' }
+TBPostsListComponent >> loginErrorOccurred [
+	showLoginError := true
 ]
 
 { #category : #'as yet unclassified' }
@@ -60,4 +76,33 @@ TBPostsListComponent >> renderContentOn: html [
 	with: [ self readSelectedPosts
 	do: [ :p | html render: (self postComponentFor: p) ]
 	] ] ]
+]
+
+{ #category : #rendering }
+TBPostsListComponent >> renderLoginErrorMessageIfAnyOn: html [
+	self hasLoginError ifTrue: [
+	showLoginError := false.
+	html tbsAlert
+		beDanger ;
+		with: self loginErrorMessage
+	]
+]
+
+{ #category : #rendering }
+TBPostsListComponent >> renderPostColumnOn: html [
+html tbsColumn
+extraSmallSize: 12;
+smallSize: 10;
+mediumSize: 8;
+with: [
+self renderLoginErrorMessageIfAnyOn: html.
+self basicRenderPostsOn: html ]
+]
+
+{ #category : #'as yet unclassified' }
+TBPostsListComponent >> tryConnectionWithLogin: login andPassword:
+password [
+(login = 'admin' and: [ password = 'topsecret' ])
+ifTrue: [ self goToAdministrationView ]
+ifFalse: [ self loginErrorOccurred ]
 ]
