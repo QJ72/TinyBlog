@@ -102,7 +102,11 @@ self basicRenderPostsOn: html ]
 { #category : #'as yet unclassified' }
 TBPostsListComponent >> tryConnectionWithLogin: login andPassword:
 password [
-(login = 'admin' and: [ password = 'topsecret' ])
-ifTrue: [ self goToAdministrationView ]
+(login = self blog administrator login and: [
+(MD5 hashMessage: password) = self blog administrator password
+])
+ifTrue: [
+self session currentAdmin: self blog administrator.
+self goToAdministrationView ]
 ifFalse: [ self loginErrorOccurred ]
 ]
