@@ -25,6 +25,11 @@ TBPostsListComponent >> currentCategory: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+TBPostsListComponent >> goToAdministrationView [
+	self call: TBAdminComponent new
+]
+
+{ #category : #'as yet unclassified' }
 TBPostsListComponent >> postComponentFor: aPost [
 	^ TBPostComponent new post: aPost
 ]

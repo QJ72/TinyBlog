@@ -4,6 +4,16 @@ Class {
 	#category : #'TinyBlog-Components'
 }
 
+{ #category : #initialization }
+TBAdminComponent >> createHeaderComponent [
+	^ TBAdminHeaderComponent from: self
+]
+
+{ #category : #'as yet unclassified' }
+TBAdminComponent >> goToPostListView [
+	self answer
+]
+
 { #category : #rendering }
 TBAdminComponent >> renderContentOn: html [ 
 	super renderContentOn: html.
