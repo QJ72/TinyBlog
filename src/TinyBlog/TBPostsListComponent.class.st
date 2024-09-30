@@ -9,6 +9,17 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+TBPostsListComponent >> basicRenderCategoriesOn: html [
+	html render: self categoriesComponent
+]
+
+{ #category : #'as yet unclassified' }
+TBPostsListComponent >> basicRenderPostsOn: html [
+	self readSelectedPosts do: [ :p |
+	html render: (self postComponentFor: p) ]
+]
+
+{ #category : #'as yet unclassified' }
 TBPostsListComponent >> categoriesComponent [
 	^ TBCategoriesComponent
 	categories: self blog allCategories

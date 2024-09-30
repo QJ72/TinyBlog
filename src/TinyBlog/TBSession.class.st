@@ -20,7 +20,7 @@ TBSession >> currentAdmin: anObject [
 
 { #category : #testing }
 TBSession >> isLogged [
-^ self currentAdmin notNil
+	^ self currentAdmin notNil
 ]
 
 { #category : #rendering }

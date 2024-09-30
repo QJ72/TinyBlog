@@ -59,6 +59,60 @@ TBPost >> date: aDate [
 	date := aDate
 ]
 
+{ #category : #'acessing-magritte' }
+TBPost >> descriptionCategory [
+<magritteDescription>
+^ MAStringDescription new
+label: 'Category';
+priority: 300;
+accessor: #category;
+yourself
+]
+
+{ #category : #'acessing-magritte' }
+TBPost >> descriptionDate [
+<magritteDescription>
+^ MADateDescription new
+label: 'Date';
+priority: 400;
+accessor: #date;
+beRequired;
+yourself
+]
+
+{ #category : #'acessing-magritte' }
+TBPost >> descriptionText [
+<magritteDescription>
+^ MAMemoDescription new
+label: 'Text';
+priority: 200;
+accessor: #text;
+beRequired;
+yourself
+]
+
+{ #category : #'acessing-magritte' }
+TBPost >> descriptionTitle [
+<magritteDescription>
+	^ MAStringDescription new
+		label: 'Title';
+		priority: 100;
+		accessor: #title;
+		beRequired;
+		yourself
+]
+
+{ #category : #'acessing-magritte' }
+TBPost >> descriptionVisible [
+<magritteDescription>
+^ MABooleanDescription new
+label: 'Visible';
+priority: 500;
+accessor: #visible;
+beRequired;
+yourself
+]
+
 { #category : #testing }
 TBPost >> isUnclassified [
 	^ self category = TBPost unclassifiedTag
