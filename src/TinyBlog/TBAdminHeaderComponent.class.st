@@ -13,12 +13,12 @@ TBAdminHeaderComponent >> renderButtonsOn: html [
 
 { #category : #rendering }
 TBAdminHeaderComponent >> renderDisconnectButtonOn: html [
-html tbsNavbarButton
-tbsPullRight;
-callback: [ component goToPostListView ];
-with: [
-html text: 'Disconnect '.
-html tbsGlyphIcon iconLogout ]
+	html tbsNavbarButton
+		tbsPullRight;
+		callback: [ component goToPostListView ];
+		with: [
+			html text: 'Disconnect '.
+			html tbsGlyphIcon iconLogout ]
 ]
 
 { #category : #rendering }

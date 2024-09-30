@@ -61,12 +61,22 @@ TBPost >> date: aDate [
 
 { #category : #'acessing-magritte' }
 TBPost >> descriptionCategory [
-<magritteDescription>
-^ MAStringDescription new
-label: 'Category';
-priority: 300;
-accessor: #category;
-yourself
+	<magritteDescription>
+	^ MAStringDescription new
+		label: 'Category';
+		priority: 300;
+		accessor: #category;
+		comment: 'Unclassified if empty';
+		componentClass: TBSMagritteTextInputComponent;
+		yourself
+]
+
+{ #category : #'magritte descriptions' }
+TBPost >> descriptionContainer [
+	<magritteContainer>
+	^ super descriptionContainer
+		componentRenderer: TBSMagritteFormRenderer;
+		yourself
 ]
 
 { #category : #'acessing-magritte' }
@@ -82,35 +92,42 @@ yourself
 
 { #category : #'acessing-magritte' }
 TBPost >> descriptionText [
-<magritteDescription>
-^ MAMemoDescription new
-label: 'Text';
-priority: 200;
-accessor: #text;
-beRequired;
-yourself
+	<magritteDescription>
+	^ MAMemoDescription new
+		label: 'Text';
+		priority: 200;
+		accessor: #text;
+		beRequired;
+		requiredErrorMessage: 'A blog post must contain a text.';
+		comment: 'Please enter a text';
+		componentClass: TBSMagritteTextAreaComponent;
+		yourself
 ]
 
 { #category : #'acessing-magritte' }
 TBPost >> descriptionTitle [
-<magritteDescription>
+	<magritteDescription>
 	^ MAStringDescription new
 		label: 'Title';
 		priority: 100;
 		accessor: #title;
+		requiredErrorMessage: 'A blog post must have a title.';
+		comment: 'Please enter a title';
+		componentClass: TBSMagritteTextInputComponent;
 		beRequired;
 		yourself
 ]
 
 { #category : #'acessing-magritte' }
 TBPost >> descriptionVisible [
-<magritteDescription>
-^ MABooleanDescription new
-label: 'Visible';
-priority: 500;
-accessor: #visible;
-beRequired;
-yourself
+	<magritteDescription>
+	^ MABooleanDescription new
+		checkboxLabel: 'Visible';
+		priority: 500;
+		accessor: #visible;
+		componentClass: TBSMagritteCheckboxComponent;
+		beRequired;
+		yourself
 ]
 
 { #category : #testing }

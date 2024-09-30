@@ -35,7 +35,7 @@ html tbsGlyphIcon iconLogout ]
 
 { #category : #initialization }
 TBSession >> reset [
-currentAdmin := nil.
-self requestContext redirectTo: self application url.
-self unregister.
+	currentAdmin := nil.
+	self requestContext redirectTo: self application url.
+	self unregister.
 ]

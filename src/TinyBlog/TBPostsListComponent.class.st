@@ -91,12 +91,12 @@ TBPostsListComponent >> renderContentOn: html [
 
 { #category : #rendering }
 TBPostsListComponent >> renderLoginErrorMessageIfAnyOn: html [
-	self hasLoginError ifTrue: [
+	self hasLoginError
+		ifFalse: [ ^ self ].
 	showLoginError := false.
 	html tbsAlert
-		beDanger ;
+		beDanger;
 		with: self loginErrorMessage
-	]
 ]
 
 { #category : #rendering }
